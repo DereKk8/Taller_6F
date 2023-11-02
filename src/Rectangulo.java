@@ -30,6 +30,11 @@ public class Rectangulo extends FigGeo{
     }
 
     @Override
+    public float darPermitero() {
+        return altura * 2 + base * 2;
+    }
+
+    @Override
     public String toString() {
         return "Rectangulo{" + super.toString() +
                 " base=" + base +

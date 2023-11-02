@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class Consola {
@@ -44,7 +45,7 @@ public class Consola {
                     int opcionTri = scanner.nextInt();
 
                     while (opcionTri != 0) {
-                        switch (opcion) {
+                        switch (opcionTri) {
                             case 1:
                                 // Crear triángulo rectángulo
                                 System.out.println("Ingrese la longitud del cateto adyacente:");
@@ -57,7 +58,7 @@ public class Consola {
                                 if(salida == 1){
                                     System.out.println("No se pudo Crear el Triangulo!");
                                 }
-
+                            break;
 
                             case 2:
                                 // Crear triángulo equilátero
@@ -86,36 +87,68 @@ public class Consola {
                             case 4:
                                 // Crear triángulo escaleno
                                 System.out.println("Ingrese la longitud de un lado:");
-                                double lado1 = sc.nextDouble();
+                                lado1 = scanner.nextFloat();
                                 System.out.println("Ingrese la longitud de otro lado:");
-                                double lado2 = sc.nextDouble();
+                                lado2 = scanner.nextFloat();
                                 System.out.println("Ingrese la longitud del tercer lado:");
-                                double lado3 = sc.nextDouble();
+                                float lado3 = scanner.nextFloat();
 
-                                // Calcular el área del triángulo escaleno
-                                double semisumaLados = (lado1 + lado2 + lado3) / 2;
-                                double area = Math.sqrt(semisumaLados * (semisumaLados - lado1) * (semisumaLados - lado2) * (semisumaLados - lado3));
+                                salida = v.crearTriangualoEscaleno(lado1, lado2, lado3);
+                                if(salida == 1){
+                                    System.out.println("No se pudo Crear el Triangulo!");
+                                }
+                                break;
 
-                                // Imprimir el área del triángulo escaleno
-                                System.out.println("El área del triángulo escaleno es de " + area + " unidades cuadradas");
+                            case 0:
                                 break;
                             default:
                                 System.out.println("Opción no válida");
                         }
 
                         imprimirMenu();
-                        opcion = sc.nextInt();
+                        opcionTri = scanner.nextInt();
                     }
 
                     break;
                 case 4:
+                    if(v.listaFigGeo.isEmpty())
+                    {
+                        System.out.println("La lista de figuras esta vacia");
+                    }
+                    else
+                        System.out.println(v.listaFigGeo);
 
                     break;
                 case 5:
+                    List<Float> areas = v.darAreas();
 
+                    if(areas.isEmpty())
+                    {
+                        System.out.println("Ha ocurrido un error al calcular las areas");
+                    }
+                    else
+                        System.out.println("Las Areas de todos las figuras son" + areas);
                     break;
                 case 6:
+                    List<Float> perimetros = v.darPerimetros();
 
+                    if(perimetros.isEmpty())
+                    {
+                        System.out.println("Ha ocurrido un error al calcular los perimetros");
+                    }
+                    else
+                        System.out.println("Los perimetros de todoas las figutas son" + perimetros);
+                    break;
+                case 7:
+                    System.out.println("Hay " + v.cuantosTriRec() + " Triangulos Rectangulo/s");
+                    break;
+
+                case 8:
+                    System.out.println("Hay " + v.cuantosCuadrdados() + " Cuadrado/s");
+                    break;
+
+                case 9:
+                    System.out.println("Hay " + v.cuantosRectan() + " Rectangulo/s");
                     break;
                 case 0:
                     System.out.println("Saliendo del programa.");
@@ -135,7 +168,10 @@ public class Consola {
         System.out.println("3. Crear un Triangulo");
         System.out.println("4. Mostrar la información de todas las figuras");
         System.out.println("5. Calcular las áreas de todas las figuras");
-        System.out.println("6. Calcular los perímetros de todas las figuras");
+        System.out.println("6. Calcular los perimetros de todas las figuras");
+        System.out.println("7. Consultar el numero de triangulos rectangulos");
+        System.out.println("8. Consultar el numero de cuadrados");
+        System.out.println("9. Consultar el numero de rectangulos");
         System.out.println("0. Salir");
     }
 
